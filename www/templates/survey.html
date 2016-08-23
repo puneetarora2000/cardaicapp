@@ -1,0 +1,437 @@
+<ion-view view-title="{{view_title}}">
+	<ion-content scroll="true">
+<!-- 	{{job}} --> 
+	<!-- <div class="im-wrapper"> Padded wrapper--> 
+  <form>
+    <!-- <ion-slide-box class="slider-box" pager-click="navSlide(index)" auto-play="false" does-continue="false"> -->
+    <ion-slide-box show-pager="false" auto-play="false" does-continue="false" on-swipe-left="leftSwipe()" on-swipe-right="rightSwipe()" on-slide-changed="slideChanged(index)" dynamic-height>
+
+ <ion-slide id="slide0">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">Medical Survey Details</strong>
+    </div>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name of the Person</span>
+        <input type="text" placeholder="Name of the Person" name="name" ng-model="survey.name">
+      </label>
+
+      <label class="item item-input item-select">
+        <span class="input-label">Gender</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="gender" ng-model="survey.gender">
+          <option value="male"> Male</option> 
+          <option value="male"> Female</option>
+        </select>
+      </label>
+  
+     <label class="item item-input item-select">
+        <span class="input-label">Weight (Kgs)</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="Weight" ng-model="survey.Weight">
+          <option value="50">50-60</option> 
+          <option value="60">60-70</option>
+        </select>
+      </label>
+      
+       <label class="item item-input item-select">
+        <span class="input-label">HormonalFactors</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="HormonalFactors" ng-model="survey.HormonalFactors">
+          <option value="yes">Yes</option> 
+          <option value="no">No</option>
+          <option value="no">Don't Know</option>
+        </select>
+      </label>
+      </div>
+         
+                    
+    </ion-slide>
+
+    <ion-slide id="slide1">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">PhysicalActivity</strong>
+    </div>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Vehicle Regn. No.</span>
+        <input type="text" placeholder="Vehicle Regn. No." name="vehicle_regn_no" ng-model="survey.vehicle_regn_no">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Vehicle owner</span>
+        <input type="text" placeholder="Vehicle owner" name="vehicle_owner" ng-model="survey.vehicle_owner">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Chassis No.</span>
+        <input type="text" placeholder="Chassis No." name="chassis_no" ng-model="survey.chassis_no">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Engine No.</span>
+        <input type="text" placeholder="Engine No." name="engine_no" ng-model="survey.engine_no">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Date of sale</span>
+        <input type="date" placeholder="Date of Sale" name="date_of_sale" ng-model="survey.date_of_sale">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Date of Regn.</span>
+        <input type="date" placeholder="Date of Regn." name="date_of_regn" ng-model="survey.date_of_regn">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Inspection Date</span>
+        <input type="date" placeholder="Inspection Date" name="inspection_date" ng-model="survey.inspection_date">
+      </label> -->
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="survey.date_of_sale">
+        <i class="icon ion-calendar positive"></i>
+        <small>Date of Sale:</small> 
+        <strong>{{survey.date_of_sale| date: "dd-MM-yyyy"}}</strong>
+      </div>
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="survey.date_of_regn">
+        <i class="icon ion-calendar positive"></i>
+        <small>Date of Regn.:</small> 
+        <strong>{{survey.date_of_regn| date: "dd-MM-yyyy"}}</strong>
+      </div>
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-model="survey.inspection_date">
+        <i class="icon ion-calendar positive"></i>
+        <small>Inspection Date:</small> 
+        <strong>{{survey.inspection_date| date: "dd-MM-yyyy"}}</strong>
+      </div>
+      <label class="item item-input item-select">
+        <span class="input-label">Make</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="make" ng-model="survey.make" ng-init="survey.make == ''" ng-change="makeChange()">
+          <option value="">Select</option>
+          <option ng-repeat="make in surveyFormData.makes" value="{{make.id}}">{{make.VechicalMake
+}}</option>
+        </select>
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Model</span>
+        <input type="text" placeholder="Model" name="model" ng-model="survey.model">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Model</span>
+        <!-- <input type="text" placeholder="Model" name="model" ng-model="survey.model"> -->
+        <select name="model" ng-init="survey.model == ''" ng-model="survey.model">
+          <option value="">Select</option>
+          <option ng-repeat="model in surveyFormData.models" ng-if="model.VechicalMakeID == survey.make" value="{{model.id}}">{{model.VechicalModel
+}}</option>
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Colour</span>
+        <!-- <input type="text" placeholder="Colour" name="colour" ng-model="survey.colour"> -->
+        <select name="colour" ng-init="survey.colour == ''" ng-model="survey.colour">
+          <option value="">Select</option>
+          <option value="solid">Solid</option>
+          <option value="mettalic">Mettalic</option>
+          <option value="coat">3 Coat</option>
+        </select>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Km Reading</span>
+        <input type="text" placeholder="Km Reading" name="km_reading" ng-model="survey.km_reading">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Vehicle Type</span>
+        <input type="text" placeholder="Vehicle Type" name="vehicle_type" ng-model="survey.vehicle_type">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Vehicle Type</span>
+        <select name="vehicle_type" ng-init="survey.vehicle_type=''" ng-change="vehicleTypeChange()" ng-model="survey.vehicle_type">
+          <option value="">Select</option>
+          <option value="two_wheeler">Two Wheeler</option>
+          <option value="four_wheeler" >Four Wheeler</option>
+        </select>
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Class of Vehicle</span>
+        <input type="text" placeholder="Class of Vehicle" name="class_of_vehicle" ng-model="survey.class_of_vehicle">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Class of Vehicle</span>
+        <select name="class_of_vehicle" ng-init="survey.class_of_vehicle=''" ng-change="classOfVehicleChange()" ng-model="survey.class_of_vehicle">
+          <option value="">Select</option>
+          <option value="commercial_passenger">Commercial / Passenger</option>
+          <option value="commercial_goods">Commercial / Goods</option>
+          <option value="private">Private</option>
+        </select>
+      </label>
+      <label class="item item-input item-floating-label" ng-show="cc_show == '1'">
+        <span class="input-label">CC</span>
+        <input type="text" placeholder="CC" ng-init="cc_show == '1'" ng-change="ccChange()" name="cc" ng-model="survey.cc">
+      </label>
+      <label class="item item-input item-floating-label" ng-show="seat_capacity_show == '1'">
+        <span class="input-label">Seat Capacity</span>
+        <input type="text" placeholder="Seat Capacity" ng-init="survey.seat_capacity = 0" ng-change="seatCapacityChange()" name="seat_capacity" ng-model="survey.seat_capacity">
+      </label>
+      <label class="item item-input item-floating-label" ng-show="weight_vehicle_show == '1'">
+        <span class="input-label">Weight Vehicle</span>
+        <input type="text" placeholder="Weight Vehicle" ng-change="weightVehicleChange()" name="weight_vehicle" ng-model="survey.weight_vehicle">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Fuel Type</span>
+        <input type="text" placeholder="Fuel Type" name="fuel_type" ng-model="survey.fuel_type">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Fuel Type</span>
+        <select name="fuel_type" ng-init="survey.fuel_type = ''" ng-model="survey.fuel_type">
+          <option value="">Select</option>
+          <option value="diesel">Diesel</option>
+          <option value="petrol">Petrol</option>
+          <option value="lpg">LPG</option>
+          <option value="cng">CNG</option>
+        </select>
+      </label>
+    </div>
+    </ion-slide>
+
+    <ion-slide id="slide2">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">DietInTakePerDay</strong>
+    </div>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Drivers name</span>
+        <input type="text" placeholder="Drivers name" name="drivers_name" ng-model="survey.drivers_name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Age</span>
+        <input type="text" placeholder="Age" name="age" ng-model="survey.age">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">License No.</span>
+        <input type="text" placeholder="License No." name="licence_no" ng-model="survey.licence_no">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Date of issue</span>
+        <input type="date" placeholder="Date of issue" ng-change="dateOfIssueChange()" name="date_of_issue" ng-model="survey.date_of_issue">
+      </label> -->
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-change="dateOfIssueChange()" ng-model="survey.date_of_issue">
+        <i class="icon ion-calendar positive"></i>
+        <small>Date of Issue:</small> 
+        <strong>{{survey.date_of_issue| date: "dd-MM-yyyy"}}</strong>
+      </div>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Issuing authority</span>
+        <input type="text" placeholder="Issuing authority" name="issuing_authority" ng-model="survey.issuing_authority">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Valid upto</span>
+        <input type="date" placeholder="Valid upto" name="valid_upto" ng-change="validUptoChange()" ng-model="survey.valid_upto">
+      </label> -->
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-change="validUptoChange()" ng-model="survey.valid_upto">
+        <i class="icon ion-calendar positive"></i>
+        <small>Valid Upto:</small> 
+        <strong>{{survey.valid_upto| date: "dd-MM-yyyy"}}</strong>
+      </div>
+
+      <!-- To Make it multiselect -->
+      <label class="item item-input item-select">
+        <span class="input-label">Type of licence</span>
+        <select multiple="multiple" placeholder="Type of licence" name="type_of_licence" ng-model="survey.type_of_licence">
+          <option value="lmv">LMV</option>
+          <option value="three_wheeler">Three Wheeler</option>
+          <option value="hmv">HMV</option>
+          <option value="invalid_carriage">Invalid Carriage</option>
+          <option value="mcycle_lmv_nt">M-Cycle & LMV-NT</option>
+          <option value="mcycle_wg_lmv_nt">M-Cycle-WG & LMV-NT</option>
+          <option value="mcycle_scooter_car">M-Cycle/Scooter & Car</option>
+          <option value="others">Others</option>
+        </select>
+      </label>
+      <div class="item" ng-show="driverStatus != ''" ng-class="{'warning': driverStatus != ''}">
+        {{driverStatus}}
+      </div>
+    </div>
+    </ion-slide>
+
+    <ion-slide id="slide3">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">BloodPressureReading</strong>
+    </div>
+    <div class="list">
+      <div class="item item-icon-left" ion-datetime-picker monday-first am-pm ng-change="accidentTimeChange()" ng-model="survey.date_time_of_accident">
+        <i class="icon ion-ios-clock-outline positive"></i>
+        <small>Date time of accident:</small> 
+        <strong>
+          {{survey.date_time_of_accident| date: "dd-MM-yyyy h:mm:ss a"}}
+        </strong>
+        <!-- <input type="date" placeholder="Date time of accident" name="date_time_of_accident" ng-model="survey.date_time_of_accident"> -->
+      </div>
+      <div class="item" ng-show="accident_status != ''" ng-class="{'warning': accident_status != ''}">
+        {{accident_status}}
+      </div>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Place of accident</span>
+        <!-- <input type="text" placeholder="Place of accident" name="place_of_accident" ng-model="survey.place_of_accident"> -->
+         <input type="text" placeholder="Place of Accident" ng-model="survey.place_of_accident" googleplace="" class="ng-pristine ng-valid" autocomplete="off">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Casualities</span>
+        <input type="text" placeholder="Casualities" name="casualities" ng-model="survey.casualities">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Third party involvement</span>
+        <input type="text" placeholder="Third party involvement" name="third_party_involvement" ng-model="survey.third_party_involvement">
+      </label> -->
+      <ion-checkbox ng-change="thirdPartyInvolvementChange()"  ng-model="survey.third_party_involvement" 
+                      ng-checked="survey.third_party_involvement">
+        Third Party Involvement
+      </ion-checkbox>
+      <ion-checkbox  ng-change="policeReportChange()" ng-model="survey.police_report" 
+                      ng-checked="survey.police_report">
+        Police Report
+      </ion-checkbox>
+
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Police report</span>
+        <input type="text" placeholder="Police report" name="police_report" ng-model="survey.police_report">
+      </label> -->
+      <label class="item item-input item-floating-label" ng-show="police_report_details_show == '1'">
+        <span class="input-label">Police report details</span>
+        <input type="text" placeholder="Police report details" name="police_report_details" ng-model="survey.police_report_details">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Spot survey</span>
+        <input type="text" placeholder="Spot survey" name="spot_survey" ng-model="survey.spot_survey">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Cause of accident</span>
+        <textarea class="large-text" placeholder="Cause of accident" name="cause_of_accident" ng-model="survey.cause_of_accident"></textarea> 
+      </label>
+    </div>
+    </ion-slide>
+
+    <ion-slide id="slide4">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">CholesterolReading</strong>
+    </div>
+    <div class="list">
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Potential Case for BI/PD ?</span>
+        <input type="text" placeholder="Potential Case for BI/PD ?" name="potential_case_for_bi_pd" ng-model="survey.potential_case_for_bi_pd">
+      </label> -->
+      <ion-checkbox   ng-model="survey.potential_case_for_bi_pd" 
+                      ng-checked="survey.potential_case_for_bi_pd">
+        Potential Case for BI/PD ?
+      </ion-checkbox>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">RC/DL Verified</span>
+        <input type="text" placeholder="RC/DL Verified" name="rc_dl_verified" ng-model="survey.rc_dl_verified">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">RC/DL Verified</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="rc_dl_verified" ng-init="survey.rc_dl_verified = 'self_attested'" ng-model="survey.rc_dl_verified">
+          <option value="self_attested">Self Attested</option>
+          <option value="verified">Verified</option>
+        </select>
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Reinspection</span>
+        <input type="text" placeholder="Reinspection" name="reinspection" ng-model="survey.reinspection">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Reinspection</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="reinspection" ng-init="survey.reinspection = 'not_required'" ng-model="survey.reinspection">
+          <option value="done">Done</option>
+          <option value="not_required">Not Required</option>
+          <option value="waived_off">Waived Off</option>
+        </select>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Workshop / Name of Repairer</span>
+        <input type="text" placeholder="Workshop / Name of Repairer" name="name_of_the_repairer" ng-model="survey.name_of_the_repairer">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Voluntary / Impose access</span>
+        <input type="text" placeholder="Voluntary / Impose access" name="voluntary_access" ng-model="survey.voluntary_access">
+      </label> -->
+      <ion-checkbox ng-change="voluntaryAccessChange()" ng-model="survey.voluntary_access" 
+                     ng-checked="survey.voluntary_access">
+        Voluntary / Impose access
+      </ion-checkbox>
+      <label class="item item-input item-floating-label" ng-show="voluntary_access_show == '1'">
+        <span class="input-label">Voluntary / Impose access value</span>
+        <input type="text" placeholder="Voluntary / Impose access value" name="voluntary_access_value" ng-model="survey.voluntary_access_value">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Vat</span>
+        <input type="text" placeholder="Vat" name="vat" ng-model="survey.vat">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Service Tax</span>
+        <input type="text" placeholder="Service Tax" name="service_tax" ng-model="survey.service_tax">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Settlement Percentage</span>
+        <input type="text" placeholder="Settlement Percentage" name="settlement_percentage" ng-model="survey.settlement_percentage">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Add on Cover</span>
+        <input type="text" placeholder="Add on Cover" name="add_on_cover" ng-model="survey.add_on_cover">
+      </label> -->
+      <ion-checkbox   ng-model="survey.add_on_cover" 
+                      ng-checked="survey.add_on_cover">
+        Add on Cover
+      </ion-checkbox>
+
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Discount</span>
+        <input type="text" placeholder="Discount" name="discount" ng-model="survey.discount">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Towing Charges</span>
+        <input type="text" placeholder="Towing Charges" name="towing_charges" ng-model="survey.towing_charges">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Salvage</span>
+        <input type="text" placeholder="Salvage" name="salvage" ng-model="survey.salvage">
+      </label>
+      <!-- <label class="item item-input item-floating-label">
+        <span class="input-label">Paint Vat/St Ratio</span>
+        <input type="text" placeholder="Paint Vat/St Ratio" name="paint_vat_st_ratio" ng-model="survey.paint_vat_st_ratio">
+      </label> -->
+      <label class="item item-input item-select">
+        <span class="input-label">Paint Vat/St Ratio</span>
+        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
+        <select name="paint_vat_st_ratio"  ng-init="survey.paint_vat_st_ratio = '25/75'" ng-model="survey.paint_vat_st_ratio">
+          <option value="0/100<">0 / 100</option>
+          <option value="25/75">25 / 75</option>
+          <option value="30/70">30 / 70</option>
+        </select>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Wct tax rate for paint</span>
+        <input type="text" placeholder="Wct tax rate for paint" name="wct_tax_rate_for_paint" ng-model="survey.wct_tax_rate_for_paint">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Wct tax rate for repair</span>
+        <input type="text" placeholder="Wct tax rate for repair" name="wct_tax_rate_for_repair" ng-model="survey.wct_tax_rate_for_repair">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Octoroi</span>
+        <input type="text" placeholder="Octoroi" name="octoroi" ng-model="survey.octoroi">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Remarks</span>
+        <textarea class="large-text" placeholder="Remarks" name="remarks" ng-model="survey.remarks"></textarea> 
+      </label>
+  
+    </div>
+    </ion-slide>
+
+    </ion-slide-box> <!-- End Form slides -->
+    
+    <div class="button-bar">
+    <button ion-item class="button icon-left ion-chevron-left button-light" ng-click="previous()" ng-hide="prevButton">Back</button>
+    <button type="submit" class="button button-balanced" ng-click="save(survey)" ng-show="submitButton">Submit</button>
+    <button ion-item class="button icon-right ion-chevron-right button-light" ng-click="next()" ng-hide="nextButton">Next</button>
+    </div>
+
+  </form>
+  <!-- </div>  Padded wrapper--> 
+	</ion-content>
+</ion-view>
