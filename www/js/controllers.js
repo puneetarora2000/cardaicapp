@@ -43,6 +43,32 @@ angular.module('starter.controllers', [])
 
 .controller('SurveyCtrl', function($scope, $ionicSlideBoxDelegate, $state, $ionicPlatform, $ionicPopup, $ionicScrollDelegate, $timeout){
 
+  // $scope.LowBloodPressureSys = [];
+  // for(var i=70; i<200; i+=20){
+  //   val = i+'-';
+  //   inc = i + 20;
+  //   push = val + inc;
+  //   $scope.LowBloodPressureSys.push(push);
+  // }
+
+  // $scope.LowBloodPressureDia = [];
+  // for(var i=40; i<200; i+=20){
+  //   val = i+'-';
+  //   inc = i + 20;
+  //   push = val + inc;
+  //   $scope.LowBloodPressureDia.push(push);
+  // }
+
+
+   $scope.sfrequencies = [];
+  for(var i=0; i<10; i+=2){
+    val = i+'-';
+    inc = i + 2;
+    push = val + inc;
+    $scope.sfrequencies.push(push);
+  }
+
+
   //Slides functionalities
   $scope.frequencies = [];
   for(var i=0; i<100; i+=10){
@@ -51,8 +77,18 @@ angular.module('starter.controllers', [])
     push = val + inc;
     $scope.frequencies.push(push);
   }
+
   console.log($scope.frequencies);
-  
+
+  $scope.ages = [];
+  for(var i=20; i<80; i+=10){
+    val = i+'-';
+    inc = i + 10;
+    push = val + inc;
+    $scope.ages.push(push);
+  }
+
+
   function resizeElementHeight(element) {
     div2 = document.getElementById(element);
     console.log(div2.parentNode.offsetHeight);
