@@ -13,99 +13,226 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Name of the Person</span>
-        <input type="text" placeholder="Name of the Person" name="name" ng-model="survey.name">
+        <input type="text" placeholder="Name of the Person" name="name" ng-model="Survey.Name">
       </label>
 
       <label class="item item-input item-select">
         <span class="input-label">Gender</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="gender" ng-model="survey.gender">
+        <select name="gender" ng-model="Survey.Gender">
           <option value="1"> Male</option> 
           <option value="2"> Female</option>
         </select>
       </label>
+    </div>
+  </ion-slide>
+
+  <ion-slide id="slide1">
+    <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">Weight Survey</strong>
+    </div>
+    <div class="list">
+
+    <div class="item">
+      Underweight
+    </div>
   
      <label class="item item-input item-select">
-        <span class="input-label">Weight (Kgs)</span>
-        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="weight" ng-model="survey.weight">
-          <option value="40">40-50</option> 
-          <option value="60">60-70</option>
-          <option value="50">50-60</option> 
-          <option value="50">50-60</option> 
-          <option value="50">50-60</option> 
-          <option value="50">50-60</option> 
+        <span class="input-label">BMI</span>
+         <select name="Underweight" ng-model="Survey.Underweight.BMI">
+          <option value="10-15">10-15</option> 
         </select>
       </label>
-      
+   
+          
+    <div class="item">
+    Ideal Weight
+    </div>
        <label class="item item-input item-select">
-        <span class="input-label">HormonalFactors</span>
-        <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="hormonalfactors" ng-model="survey.hormonalfactors">
-          <option value="1">Yes</option> 
-          <option value="0">No</option>
-          <option value="-1">Don't Know</option>
+        <span class="input-label">BMI</span>
+        <select name="Exercise" ng-model="Survey.IdealWeight.BMI">
+          <option value="20-25">20-25</option> 
+          
         </select>
       </label>
-      </div>
-         
-                    
-    </ion-slide>
 
-    <ion-slide id="slide1">
+         
+         <div class="item">
+     Overweight
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">BMI</span>
+        <select name=" Overweight" ng-model="Survey.Overweight.BMI">
+         <option value="25-30">25-30</option> 
+          
+        </select>
+      </label>
+
+    <div class="item">
+     Obese
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">BMI</span>
+        <select name="Obese" ng-model="Survey.Obese.BMI">
+         <option value="30-40">30-40</option> 
+          
+        </select>
+      </label>
+  </div>
+</ion-slide>
+
+<ion-slide id="slide2">
+      <div class="bar bar-form bar-stable static text-center">
+      <strong class="title">Hormonal Activity Survey</strong>
+      </div>
+    <div class="list">
+
+    <div class="item">
+     Heart Disease
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="Heart Disease" ng-model="Survey.HeartDisease.Age">
+         <option value="40-50">40-50</option> 
+          
+        </select>
+      </label>
+
+      <div class="item">
+     Mood Disorders
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="  Mood Disorders" ng-model="Survey.MoodDisorders.Age">
+         <option value="30-40">30-40</option> 
+          
+        </select>
+      </label>
+
+      <div class="item">
+     Insomnia
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="Insomnia" ng-model="Survey.Insomnia.Age">
+         <option value="20-30">20-30</option> 
+          
+        </select>
+      </label>
+       
+       <div class="item">
+     Adrenal Fatigue
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="Adrenal Fatigue" ng-model="Survey.AdrenalFatigue.Age">
+         <option value="50-60">50-60</option> 
+          
+        </select>
+      </label>
+
+      <div class="item">
+     Osteoporosis
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="Osteoporosis" ng-model="Survey.Osteoporosis.Age">
+         <option value="60-70">60-70</option> 
+          
+        </select>
+      </label>
+
+      <div class="item">
+     Thyroid
+    </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Age</span>
+        <select name="Thyroid" ng-model="Survey.Thyroid.Age">
+         <option value="50-60">50-60</option> 
+          
+        </select>
+      </label>
+       
+    </div>
+  </ion-slide>
+
+  <ion-slide id="slide3">
       <div class="bar bar-form bar-stable static text-center">
       <strong class="title">Physical Activity Survey</strong>
     </div>
     <div class="list">
- 
+
+    <div class="item">
+      Meditation
+    </div>
   
      <label class="item item-input item-select">
-        <span class="input-label">Running [Time in Mintutes] </span>
-         <select name="running" ng-model="survey.running">
-          <option value="10">10</option> 
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
+        <span class="input-label">Frequency[%]</span>
+         <select name="Meditation" ng-model="Survey.Meditation.Frequency">
+          <option value="50-60">50-60</option> 
         </select>
       </label>
       
     <label class="item item-input item-select">
-        <span class="input-label">Walking [Time in Mintutes]  </span>
-        <select name="Yoga" ng-model="survey.Yoga">
-         <option value="10">10</option> 
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
+        <span class="input-label">Time[minutes]</span>
+        <select name="Meditation" ng-model="Survey.Meditation.Time">
+         <option value="30-40">30-40</option> 
+          
         </select>
       </label>
-
+    <div class="item">
+      Physical Excersice
+    </div>
+       
        <label class="item item-input item-select">
-        <span class="input-label">Yoga</span>
-        <select name="Yoga" ng-model="survey.Yoga">
-          <option value="10">10</option> 
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
-          <option value="20">20</option>
+        <span class="input-label">Frequency[%]</span>
+         <select name="Physical Exercise" ng-init="0-10" ng-model="Survey.PhysicalExercise.Frequency">
+          <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
+          
         </select>
       </label>
 
       <label class="item item-input item-select">
-        <span class="input-label">Jumping</span>
-        <select name="Jumping" ng-model="survey.Jumping">
-         <option value="10">10</option> 
-          <option value="20">20</option>
+        <span class="input-label">Time[minutes]</span>
+        <select name="Physical Exercise" ng-model="Survey.PhysicalExercise.Time">
+         <option value="20-30">20-30</option> 
+
+         </select>
+      </label>
+         <div class="item">
+      Cycling
+     </div>
+          
+
+      <label class="item item-input item-select">
+      <span class="input-label">Frequency[%]</span>
+        <select name="Cycling" ng-model="Survey.Cycling.Frequency">
+         <option value="15-20">15-20</option> 
+          
         </select>
       </label>
-
+      <label class="item item-input item-select">
+        <span class="input-label">Time[minutes]</span>
+        <select name="Cycling" ng-model="Survey.Cycling.Time">
+         <option value="60-90">60-90</option>
+         </select>
+      </label>
       <label class="item item-input item-select">
         <span class="input-label">Cycling</span>
         <select name="Cycling" ng-model="survey.Cycling">
@@ -114,27 +241,41 @@
         </select>
       </label>
 
-       <label class="item item-input item-select">
-        <span class="input-label">Meditation</span>
-        <select name="Meditation" ng-model="survey.Meditation">
-         <option value="10">10</option> 
-          <option value="20">20</option>
-        </select>
+       
+         <div class="item">
+      Yoga
+    </div>
+          <label class="item item-input item-select">
+      <span class="input-label">Frequency[%]</span>
+        <select name="Yoga" ng-model="Survey.Yoga.Frequency">
+         <option value="50-60">50-60</option> 
+</select>
       </label>
-
       <label class="item item-input item-select">
-        <span class="input-label">Hard Physical Exercises</span>
-        <select name="hardphysical" ng-model="survey.hardphysical">
-         <option value="10">10</option> 
-          <option value="20">20</option>
+        <span class="input-label">Time[minutes]</span>
+        <select name="Yoga" ng-model="Survey.Yoga.Time">
+         <option value="30-40">30-40</option>
         </select>
       </label>
-
-
+    <div class="item">
+        Walking
+    </div>
+      <label class="item item-input item-select">
+      <span class="input-label">Frequency[%]</span>
+        <select name="Walking" ng-model="Survey.Walking.Frequency">
+         <option value="20-30">20-30</option> 
+        </select>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">Time[minutes]</span>
+        <select name="Walking" ng-model="Survey.Walking.Time">
+         <option value="60-90">60-90</option>
+        </select>
+      </label>
       </div>
     </ion-slide>
 
-    <ion-slide id="slide2">
+    <ion-slide id="slide4">
     <div class="bar bar-form bar-stable static text-center">
       <strong class="title">Diet In TakePerDay Details</strong>
     </div>
@@ -176,7 +317,7 @@
       </div>
     </ion-slide>
 
-    <ion-slide id="slide3">
+    <ion-slide id="slide5">
      <div class="bar bar-form bar-stable static text-center">
       <strong class="title">Blood Pressure Reading Details</strong>
     </div>
@@ -213,7 +354,7 @@
       </div>
     </ion-slide>
 
-    <ion-slide id="slide4">
+    <ion-slide id="slide6">
     <div class="bar bar-form bar-stable static text-center">
       <strong class="title">Cholesterol Reading Details</strong>
     </div>

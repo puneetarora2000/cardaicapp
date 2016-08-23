@@ -44,7 +44,15 @@ angular.module('starter.controllers', [])
 .controller('SurveyCtrl', function($scope, $ionicSlideBoxDelegate, $state, $ionicPlatform, $ionicPopup, $ionicScrollDelegate, $timeout){
 
   //Slides functionalities
-
+  $scope.frequencies = [];
+  for(var i=0; i<100; i+=10){
+    val = i+'-';
+    inc = i + 10;
+    push = val + inc;
+    $scope.frequencies.push(push);
+  }
+  console.log($scope.frequencies);
+  
   function resizeElementHeight(element) {
     div2 = document.getElementById(element);
     console.log(div2.parentNode.offsetHeight);
