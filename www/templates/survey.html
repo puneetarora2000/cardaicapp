@@ -13,29 +13,27 @@
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Name of the Person</span>
-        <input type="text" placeholder="Name of the Person" name="name" ng-model="Survey.Name">
+        <input type="text" placeholder="Name of the Person" name="name" ng-model="survey.Name">
       </label>
 
         <label class="item item-input item-floating-label">
         <span class="input-label">Email of the Person</span>
-        <input type="text" placeholder="Email " name="email" ng-model="Survey.Email">
+        <input type="text" placeholder="Email " name="email" ng-model="survey.Email">
       </label>
 
       <label class="item item-input item-select">
         <span class="input-label">Gender</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="gender" ng-model="Survey.Gender">
+        <select name="gender" ng-model="survey.Gender">
           <option value="1"> Male</option> 
           <option value="2"> Female</option>
         </select>
       </label>
-
        <label class="item item-input item-select">
       <span class="input-label">Age</span>
-        <select name="Insomnia" ng-model="Survey.Insomnia.Age">
+        <select name="Insomnia" ng-model="survey.Insomnia.Age" ng-change="ComputeAgeScore()">
          <option ng-repeat= "age in ages" value="{{age}}">{{age}}</option> 
-          
-          
+                   
         </select>
       </label>
 
@@ -50,32 +48,25 @@
     <div class="list">
 
    
-  
+  <!--ng-change="functionName()"  is required to invoke a function after a vlue is changed
+    Inside the controller value would be accessible through the defined model ($scope.survey). So no need to pass a parameter -->
      <label class="item item-input item-select">
         <span class="input-label">Basic Metabolic Index (BMI) </span>
-         <select name="Weight" ng-model="Survey.Weight.BMI">
+         <select name="Weight" ng-model="survey.Weight.BMI" ng-change="ComputeWeightScore()">
           <option value="1">10-15</option> 
            <option value="2">20-25</option> 
             <option value="3">25-30</option> 
              <option value="4">30-45</option> 
         </select>
       </label>
-   
-          
-   
-         
-      
 
-      
-
-     
   </div>
 </ion-slide>
 
 <ion-slide id="slide2">
 
       <div class="bar bar-form bar-stable static text-center">
-      <strong class="title">Hormonal Activity Survey</strong>
+      <strong class="title">Hormonal Activity survey</strong>
       </div>
     <div class="list">
 
@@ -85,7 +76,7 @@
       <label class="item item-input item-select">
         <span class="input-label">Do You have Heart Problem ?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="HeartDisease" ng-model="Survey.HeartDisease">
+        <select name="HeartDisease" ng-model="survey.HeartDisease" ng-change="ComputeHeartDiseaseScore()">
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -101,7 +92,7 @@
       <label class="item item-input item-select">
         <span class="input-label">Do You Suffer from Mood Disorders ?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="MoodDisorder" ng-model="Survey.MoodDisorder">
+        <select name="MoodDisorder" ng-model="survey.MoodDisorder" ng-change="ComputeMoodDisorderScore()">
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -116,7 +107,7 @@
        <label class="item item-input item-select">
         <span class="input-label">Do You Suffer from Insomnia?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="Insomnia" ng-model="Survey.Insomnia">
+        <select name="Insomnia" ng-model="survey.Insomnia" ng-change="ComputeInsomniaScore()">
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -131,7 +122,7 @@
        <label class="item item-input item-select">
         <span class="input-label">Do You Suffer from Adrenal Fatigue?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="Adrenal" ng-model="Survey.Adrenal">
+        <select name="Adrenal" ng-model="survey.Adrenal" ng-change="ComputeAdrenalScore()">
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -147,7 +138,7 @@
        <label class="item item-input item-select">
         <span class="input-label">Do You Suffer from Osteoporosis?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="Osteoporosis" ng-model="Survey.Osteoporosis">
+        <select name="Osteoporosis"  ng-model="survey.Osteoporosis" ng-change="ComputeOsteoporosisScore()" >
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -162,7 +153,7 @@
        <label class="item item-input item-select">
         <span class="input-label">Do You Suffer from Thyroid?</span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="Thyroid" ng-model="Survey.Thyroid">
+        <select name="Thyroid" ng-model="survey.Thyroid" ng-change="ComputeThyroidScore()">
           <option value="1"> Yes</option> 
           <option value="2"> No</option>
           <option value="3"> Do Not Know</option>
@@ -175,7 +166,7 @@
 
   <ion-slide id="slide3">
       <div class="bar bar-form bar-stable static text-center">
-      <strong class="title">Physical Activity Survey</strong>
+      <strong class="title">Physical Activity survey</strong>
     </div>
     <div class="list">
 
@@ -185,38 +176,38 @@
   
      <label class="item item-input item-select">
         <span class="input-label">Frequency in Percentage</span>
-         <select name="Meditation" ng-model="Survey.Meditation.Frequency">
+         <select name="Meditation" ng-model="survey.Meditation.Frequency">
           <option ng-repeat= "fqn in frequencies" value="{{fqn}}">{{fqn}}</option> 
           
         </select>
       </label>
       
     <label class="item item-input item-select">
-        <span class="input-label">Time in minutes</span>
-        <select name="Meditation" ng-model="Survey.Meditation.Time">
+      <span class="input-label">Time in minutes</span>
+       <select name="Meditation" ng-model="survey.Meditation.Time" ng-change="ng-change="ComputeMeditationScore()">
          <option ng-repeat= "fqn in frequencies" value="{{fqn}}">{{fqn}}</option> 
                    
         </select>
       </label>
+    
     <div class="item">
       Physical Excersice
     </div>
        
-       <label class="item item-input item-select">
-        <span class="input-label">Frequency in Percentage</span>
-         <select name="Physical Exercise" ng-init="0-10" ng-model="Survey.PhysicalExercise.Frequency">
-          <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
-          
-        </select>
-      </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Frequency in Percentage</span>
+           <select name="Physical Exercise" ng-init="0-10" ng-model="survey.PhysicalExercise.Frequency" >
+            <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}
+            </option> 
+            </select>
+        </label>
 
-      <label class="item item-input item-select">
-        <span class="input-label">Time[minutes]</span>
-        <select name="Physical Exercise" ng-model="Survey.PhysicalExercise.Time">
-         <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
-
-         </select>
-      </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Time[minutes]</span>
+          <select name="Physical Exercise" ng-model="survey.PhysicalExercise.Time" ng-change="ComputePhysicalExerciseScore()">
+           <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
+       </select>
+        </label>
          <div class="item">
       Cycling
      </div>
@@ -224,20 +215,20 @@
 
       <label class="item item-input item-select">
       <span class="input-label">Frequency in Percentage</span>
-        <select name="Cycling" ng-model="Survey.Cycling.Frequency">
+        <select name="Cycling" ng-model="survey.Cycling.Frequency" ng-change="ComputeAgeScore()">
          <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
           
         </select>
       </label>
       <label class="item item-input item-select">
         <span class="input-label">Time in minutes</span>
-        <select name="Cycling" ng-model="Survey.Cycling.Time">
+        <select name="Cycling" ng-model="survey.Cycling.Time">
          <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
          </select>
       </label>
       <label class="item item-input item-select">
         <span class="input-label">Cycling</span>
-        <select name="Cycling" ng-model="survey.Cycling">
+        <select name="Cycling" ng-model="survey.Cycling" ng-change="ComputeCyclingScore()">
            <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
         </select>
       </label>
@@ -248,13 +239,13 @@
     </div>
           <label class="item item-input item-select">
       <span class="input-label">Frequency in Percentage</span>
-        <select name="Yoga" ng-model="Survey.Yoga.Frequency">
+        <select name="Yoga" ng-model="survey.Yoga.Frequency">
            <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
 </select>
       </label>
       <label class="item item-input item-select">
         <span class="input-label">Time in [minutes]</span>
-        <select name="Yoga" ng-model="Survey.Yoga.Time">
+        <select name="Yoga" ng-model="survey.Yoga.Time" ng-change="ComputeYogaScore()>
            <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
         </select>
       </label>
@@ -263,13 +254,13 @@
     </div>
       <label class="item item-input item-select">
       <span class="input-label">Frequency in Percentage </span>
-        <select name="Walking" ng-model="Survey.Walking.Frequency">
+        <select name="Walking" ng-model="survey.Walking.Frequency">
           <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
         </select>
       </label>
       <label class="item item-input item-select">
         <span class="input-label">Time in  minutes</span>
-        <select name="Walking" ng-model="Survey.Walking.Time">
+        <select name="Walking" ng-model="survey.Walking.Time" ng-change="ComputeWalkingScore()">
           <option ng-repeat="frequency in frequencies" value="{{frequency}}">{{frequency}}</option> 
         </select>
       </label>
@@ -282,31 +273,30 @@
     </div>
     <div class="list">
        
-  
        <label class="item item-input item-select">
         <span class="input-label">Sugary Drinks</span>
-        <select name="Sugary" ng-model="survey.Sugary">
+        <select name="Sugary" ng-model="survey.Sugary" ng-change="ComputeSugaryScore()">
          <option ng-repeat="sfrequency in sfrequencies" value="{{sfrequency}}">{{sfrequency}}</option> 
         </select>
       </label>
       
        <label class="item item-input item-select">
         <span class="input-label">Food Supliments </span>
-        <select name="Supliments" ng-model="survey.Supliments">
+        <select name="Supliments" ng-model="survey.Supliments" ng-change="ComputeSuplimentsScore()">
         <option ng-repeat="sfrequency in sfrequencies" value="{{sfrequency}}">{{sfrequency}}</option> 
         </select>
       </label>
 
-         <label class="item item-input item-select">
+      <label class="item item-input item-select">
         <span class="input-label">Alcohol Drinks </span>
-        <select name="Alcohol" ng-model="survey.Alcohol">
+        <select name="Alcohol" ng-model="survey.Alcohol" ng-change="ComputeAlcoholScore()">
         <option ng-repeat="sfrequency in sfrequencies" value="{{sfrequency}}">{{sfrequency}}</option> 
         </select>
       </label>
 
        <label class="item item-input item-select">
         <span class="input-label">Fatty Food Intake</span>
-        <select name="Fatty" ng-model="survey.Fatty">
+        <select name="Fatty" ng-model="survey.Fatty" ng-change="ComputeFattyScore()" >
          <option ng-repeat="sfrequency in sfrequencies" value="{{sfrequency}}">{{sfrequency}}</option> 
         </select>
       </label>
@@ -325,7 +315,7 @@
 
       <label class="item item-input item-select">
         <span class="input-label">SystolicReading  </span>
-        <select name="Meditation" ng-model="survey.BloodPressure.SystolicReading">
+        <select name="Meditation" ng-change="ComputeLowBloodPressure()" ng-model="survey.BloodPressure.SystolicReading">
          <option value="1"> 70-90</option> 
           <option value="2">90-120</option>
           <option value="3">120-140</option> 
@@ -335,7 +325,7 @@
   
       <label class="item item-input item-select">
         <span class="input-label">DiastolicReading </span>
-        <select name="DiastolicReading" ng-model="survey.BloodPressure.DiastolicReading">
+        <select name="DiastolicReading" ng-change="ComputeHighBloodPressure()" ng-model="survey.BloodPressure.DiastolicReading">
         <option value="1"> 40-50</option> 
           <option value="2">60-80</option>
           <option value="3">80-90</option> 
@@ -367,7 +357,7 @@
       <label class="item item-input item-select">
         <span class="input-label">LowDensityLipoProtein </span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="LowDensityLipoProtein" ng-model="survey.LowDensityLipoProtein">
+        <select name="LowDensityLipoProtein" ng-change="ComputeAgeScore()" ng-model="survey.LowDensityLipoProtein">
           <option value="1">50-59</option> 
            <option value="2"> 60-130</option> 
           <option value="3">131-170</option>
@@ -378,7 +368,7 @@
      <label class="item item-input item-select">
         <span class="input-label">HighDensityLipoProtein </span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="HighDensityLipoProtein" ng-model="survey.HighDensityLipoProtein">
+        <select name="HighDensityLipoProtein" ng-change="ComputeAgeScore()" ng-model="survey.HighDensityLipoProtein">
          <option value="1">15-34</option> 
            <option value="2"> 35-70</option> 
           <option value="3">70-170</option>
@@ -388,7 +378,7 @@
        <label class="item item-input item-select">
         <span class="input-label">VeryLowDensityLipoProtein in mg/dl </span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="VeryLowDensityLipoProtein" ng-model="survey.VeryLowDensityLipoProtein">
+        <select name="VeryLowDensityLipoProtein" ng-change="ComputeAgeScore()" ng-model="survey.VeryLowDensityLipoProtein">
           <option value="1">02-07</option> 
            <option value="2"> 08-30</option> 
           <option value="3">31-100</option>
@@ -398,14 +388,14 @@
       <label class="item item-input item-select">
         <span class="input-label">TotalCholesterol </span>
         <!-- <input type="text" placeholder="Insurer" name="insurer" ng-model="survey.insurer"> -->
-        <select name="HormonalFactors" ng-model="survey.HormonalFactors">
+        <select name="HormonalFactors" ng-model="survey.HormonalFactors" ng-change="ComputeAgeScore()" >
            <option value="2">11-29</option> 
            <option value="2">30-200</option> 
            <option value="1">201-300</option>
         </select>
       </label>
 
-      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-change="policyPeriodFromChange()" ng-model="survey.DateOfTest">
+      <div class="item item-icon-left" ion-datetime-picker date monday-first ng-change="policyPeriodFromChange()" ng-model="survey.DateOfTest" ng-change="ComputeAgeScore()" >
         <i class="icon ion-calendar positive"></i>
         <small>DateOfTest:</small> 
         <strong>{{survey.DateOfTest| date: "dd-MM-yyyy"}}</strong>
@@ -418,7 +408,7 @@
     
     <div class="button-bar">
     <button ion-item class="button icon-left ion-chevron-left button-light" ng-click="previous()" ng-hide="prevButton">Back</button>
-    <button type="submit" class="button button-balanced" ng-click="save(survey)" ng-show="submitButton">Submit</button>
+    <button type="submit" class="button button-balanced" ng-click="ComputeScore(survey)" ng-show="submitButton">Submit</button>
     <button ion-item class="button icon-right ion-chevron-right button-light" ng-click="next()" ng-hide="nextButton">Next</button>
     </div>
 
