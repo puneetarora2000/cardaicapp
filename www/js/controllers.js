@@ -63,20 +63,26 @@ angular.module('starter.controllers', [])
   $scope.survey = {};
   //All scores would be stored in this object which is accessible anywhere in this contoller
   $scope.scores = {};
-//Walking
-// /ComputeSugaryScore
-//ComputeAlcoholcore
-//ComputeFattyScore
-//ComputeYogacore
-
+ 
+ $scope.ComputeWalkingScore = function() {
+    switch($scope.survey.Walking.Time) {
+      case  "30-45":
+        $scope.scores.Walking = 0.5 ;// Low/ideal Risk Score
+        break;  
+      default:
+        $scope.scores.Walking = 10 ;// High  Risk Score
+        break;
+    }
+    console.log($scope.scores.Walking);
+  }
 
 $scope.ComputeFattyScore = function() {
     switch($scope.survey.Fatty) {
-      case  "2":
-        $scope.scores..Fatty = 0.5 ;// No     
+      case  "0-2":
+        $scope.scores.Fatty = 0.5 ;       
         break;  
       default:
-        $scope.scores.Fatty = 10 ;// Yes     
+        $scope.scores.Fatty = 10 ;      
         break;
     }
     console.log($scope.scores.Fatty);
@@ -85,8 +91,8 @@ $scope.ComputeFattyScore = function() {
 
 $scope.ComputeAlcoholScore = function() {
     switch($scope.survey.Alcohol) {
-      case  "2":
-        $scope.scores..Alcohol = 0.5 ;// No     
+      case  "0-2":
+        $scope.scores.Alcohol = 0.5 ;// No     
         break;  
       default:
         $scope.scores.Alcohol = 10 ;// Yes     
@@ -98,8 +104,8 @@ $scope.ComputeAlcoholScore = function() {
 
 $scope.ComputeSugaryScore = function() {
     switch($scope.survey.Sugary) {
-      case  "2":
-        $scope.scores..Sugary = 0.5 ;// No     
+      case  "0-2":
+        $scope.scores.Sugary = 0.5 ;// No     
         break;  
       default:
         $scope.scores.Sugary = 10 ;// Yes     
@@ -112,34 +118,22 @@ $scope.ComputeSugaryScore = function() {
 
 
 
-$scope.ComputeYogacore = function() {
-    switch($scope.survey..Walking.Time) {
+$scope.ComputeYogaScore = function() {
+    switch($scope.survey.Yoga.Time) {
       case  "2":
-        $scope.scores.Walking.Time = 0.5 ;// No     
+        $scope.scores.Yoga = 0.5 ;// No     
         break;  
       default:
-        $scope.scores.Walking.Time = 10 ;// Yes     
+        $scope.scores.Yoga = 10 ;// Yes     
         break;
     }
-    console.log($scope.scores..Walking.Time);
+    console.log($scope.scores.Yoga);
   }
 
 
 
 
-$scope.ComputeCyclingScore = function() {
-    switch($scope.survey.Cycling) {
-      case  "2":
-        $scope.scores.Cycling = 0.5 ;// No     
-        break;  
-      default:
-        $scope.scores.Cycling = 10 ;// Yes     
-        break;
-    }
-    console.log($scope.scores.Cycling);
-  }
-
-
+ 
 
 
 
@@ -162,31 +156,56 @@ $scope.ComputeCyclingScore = function() {
 
 
 $scope.ComputePhysicalExerciseScore = function() {
-    switch($scope.survey.PhysicalExercise.Time) {
-      case  "2":
-        $scope.scores.PhysicalExercise.Time = 0.5 ;// No Heart Problem 
+    switch($scope.survey.PhysicalExercise) {
+      case  "20-30":
+        $scope.scores.PhysicalExercise = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.PhysicalExercise.Time = 10 ;// Yes Heart Problem 
+        $scope.scores.PhysicalExercise = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.PhysicalExercise.Time);
+    console.log($scope.scores.PhysicalExercise);
   }
 
 
+//ComputeSuplimentsScore//ComputeCaffeineConsumers
+
+$scope.ComputeCaffeineConsumers = function() {
+    switch($scope.survey.isCaffeineConsumers) {
+      case  "0-2":
+        $scope.scores.isCaffeineConsumers = 0.5 ;// No Heart Problem 
+        break;  
+      default:
+        $scope.scores.isCaffeineConsumers = 10 ;// Yes Heart Problem 
+        break;
+    }
+    console.log($scope.scores.isCaffeineConsumers);
+  }
+
+$scope.ComputeSuplimentsScore = function() {
+    switch($scope.survey.Supliments) {
+      case  "0-2":
+        $scope.scores.Supliments = 0.5 ;// No Heart Problem 
+        break;  
+      default:
+        $scope.scores.Supliments = 10 ;// Yes Heart Problem 
+        break;
+    }
+    console.log($scope.scores.Supliments);
+  }
 
 
 
 $scope.ComputeMeditationScore = function() {
     switch($scope.survey.Meditation.Time) {
       case  "2":
-        $scope.scores.Meditation.Time = 0.5 ;// No Heart Problem 
+        $scope.scores.Meditation = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Meditation.Time = 10 ;// Yes Heart Problem 
+        $scope.scores.Meditation = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Meditation.Time);
+    console.log($scope.scores.Meditation);
   }
 
 
@@ -205,7 +224,7 @@ $scope.ComputeThyroidScore = function() {
   }
 
 $scope.ComputeOsteoporosisScore = function() {
-    switch($scope.survey.Adrenal) {
+    switch($scope.survey.Osteoporosis) {
       case  "2":
         $scope.scores.Osteoporosis = 0.5 ;// No Heart Problem 
         break;  
@@ -282,28 +301,87 @@ $scope.ComputeMoodDisorderScore = function() {
     console.log($scope.scores.Weight);
   }
 //Called in change in survey.BloodPressure.DiastolicReading invokes the associated ng-change function
- $scope.ComputeLowBloodPressure = function() {
-   switch($scope.survey.BloodPressure.DiastolicReading) {
-     case  "70-90":
-        $scope.scores.LowBloodPressure = 0.5 ;// Low/ideal Risk Score
+ $scope.ComputeDiastolicReading = function() {
+   switch($scope.survey.DiastolicReading) {
+      case  "70-90":
+        $scope.scores.DiastolicReading = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-        $scope.scores.LowBloodPressure = 10;// High  Risk Score
+        $scope.scores.DiastolicReading = 10;// High  Risk Score
      break;
    }
-   console.log($scope.scores.LowBloodPressure);
+   console.log($scope.scores.DiastolicReading);
  }
  //Called in change in survey.BloodPressure.SystolicReading invokes the associated ng-change function
- $scope.ComputeHighBloodPressure = function(){
-   switch($scope.survey.BloodPressure.SystolicReading) {
+ $scope.ComputeSystolicReading = function(){
+   switch($scope.survey.SystolicReading) {
      case  "140-190":
-       $scope.scores.HighBloodPressure = 0.5 ;// Low/ideal Risk Score
+       $scope.scores.SystolicReading = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.HighBloodPressure = 10 ;// High  Risk Score
+       $scope.scores.SystolicReading = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.HighBloodPressure);
+   console.log($scope.scores.SystolicReading);
+ }
+
+//ComputeLowDensityLipoProteinScore
+  $scope.ComputeLowDensityLipoProteinScore = function(){
+   switch($scope.survey.LowDensityLipoProtein) {
+     case  "140-190":
+       $scope.scores.LowDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+     break;  
+     default:
+       $scope.scores.LowDensityLipoProtein = 10 ;// High  Risk Score
+     break;
+   }
+   console.log($scope.scores.LowDensityLipoProtein);
+ }
+
+
+
+
+//ComputeHighDensityLipoProteinScore
+  $scope.ComputeHighDensityLipoProteinScore = function(){
+   switch($scope.survey.HighDensityLipoProtein) {
+     case  "140-190":
+       $scope.scores.HighDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+     break;  
+     default:
+       $scope.scores.HighDensityLipoProtein = 10 ;// High  Risk Score
+     break;
+   }
+   console.log($scope.scores.HighDensityLipoProtein);
+ }
+
+
+
+
+//ComputeTotalCholesterolScore
+  $scope.ComputeVeryLowDensityLipoProteinScore = function(){
+   switch($scope.survey.VeryLowDensityLipoProtein) {
+     case  "140-190":
+       $scope.scores.VeryLowDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+     break;  
+     default:
+       $scope.scores.VeryLowDensityLipoProtein = 10 ;// High  Risk Score
+     break;
+   }
+   console.log($scope.scores.VeryLowDensityLipoProtein);
+ }
+
+
+//ComputeTotalCholesterolScore
+  $scope.ComputeTotalCholesterolScore = function(){
+   switch($scope.survey.TotalCholesterol) {
+     case  "140-190":
+       $scope.scores.TotalCholesterol = 0.5 ;// Low/ideal Risk Score
+     break;  
+     default:
+       $scope.scores.TotalCholesterol = 10 ;// High  Risk Score
+     break;
+   }
+   console.log($scope.scores.TotalCholesterol);
  }
 
 $scope.ComputeAgeScore = function() {
