@@ -4,7 +4,17 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ion-datetime-picker' ,'starter.controllers','chart.js'])
+angular.module('starter', [
+  'ionic',
+  'ion-datetime-picker',
+  'starter.controllers',
+  'starter.services',
+  'chart.js',
+])
+.constant('ApiEndpoint', {
+  url: 'http://46.101.204.235:8000/cardiacdata/'
+})
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -66,6 +76,16 @@ angular.module('starter', ['ionic','ion-datetime-picker' ,'starter.controllers',
         'menuContent': {
           templateUrl: 'templates/survey.html',
           controller: 'SurveyCtrl'
+        }
+      }
+    })
+
+  .state('app.chart', {
+      url: '/chart',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/chart.html',
+          controller: 'ChartCtrl'
         }
       }
     })

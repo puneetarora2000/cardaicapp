@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('SurveyCtrl', function($scope, $ionicSlideBoxDelegate, $state, $ionicPlatform, $ionicPopup, $ionicScrollDelegate, $timeout){
+.controller('SurveyCtrl', function($scope, $ionicSlideBoxDelegate, $state, $ionicPlatform, $ionicPopup, $ionicScrollDelegate, $timeout, CardiacStore){
 
   // $scope.LowBloodPressureSys = [];
   // for(var i=70; i<200; i+=20){
@@ -62,56 +62,57 @@ angular.module('starter.controllers', [])
   //Initialize arrays
   $scope.survey = {};
   //All scores would be stored in this object which is accessible anywhere in this contoller
+  var scores = {};
   $scope.scores = {};
- 
+
  $scope.ComputeWalkingScore = function() {
     switch($scope.survey.Walking.Time) {
       case  "30-45":
-        $scope.scores.Walking = 0.5 ;// Low/ideal Risk Score
+        scores['Walking'] = 0.5 ;// Low/ideal Risk Score
         break;  
       default:
-        $scope.scores.Walking = 10 ;// High  Risk Score
+        scores['Walking'] = 10 ;// High  Risk Score
         break;
     }
-    console.log($scope.scores.Walking);
+    console.log(scores['Walking']);
   }
 
 $scope.ComputeFattyScore = function() {
     switch($scope.survey.Fatty) {
       case  "0-2":
-        $scope.scores.Fatty = 0.5 ;       
+         scores['Fatty'] = 0.5 ;       
         break;  
       default:
-        $scope.scores.Fatty = 10 ;      
+         scores['Fatty']= 10 ;      
         break;
     }
-    console.log($scope.scores.Fatty);
+    console.log(scores['Fatty']);
   }
 
 
 $scope.ComputeAlcoholScore = function() {
     switch($scope.survey.Alcohol) {
       case  "0-2":
-        $scope.scores.Alcohol = 0.5 ;// No     
+         scores['Alcohol'] = 0.5 ;// No     
         break;  
       default:
-        $scope.scores.Alcohol = 10 ;// Yes     
+        scores['Alcohol'] = 10 ;// Yes     
         break;
     }
-    console.log($scope.scores.Alcohol);
+    console.log(scores['Alcohol']);
   }
 
 
 $scope.ComputeSugaryScore = function() {
     switch($scope.survey.Sugary) {
       case  "0-2":
-        $scope.scores.Sugary = 0.5 ;// No     
+        scores['Sugary'] = 0.5 ;// No     
         break;  
       default:
-        $scope.scores.Sugary = 10 ;// Yes     
+        scores['Sugary'] = 10 ;// Yes     
         break;
     }
-    console.log($scope.scores.Sugary);
+    console.log(scores['Sugary']);
   }
 
 
@@ -121,34 +122,27 @@ $scope.ComputeSugaryScore = function() {
 $scope.ComputeYogaScore = function() {
     switch($scope.survey.Yoga.Time) {
       case  "2":
-        $scope.scores.Yoga = 0.5 ;// No     
+        scores['Yoga'] = 0.5 ;// No     
         break;  
       default:
-        $scope.scores.Yoga = 10 ;// Yes     
+        scores['Yoga'] = 10 ;// Yes     
         break;
     }
-    console.log($scope.scores.Yoga);
+    console.log(scores['Yoga']);
   }
-
-
-
-
- 
-
-
 
 //ComputeCyclingScore
 
 $scope.ComputeCyclingScore = function() {
     switch($scope.survey.Cycling) {
       case  "2":
-        $scope.scores.Cycling = 0.5 ;// No     
+        scores['Cycling'] = 0.5 ;// No     
         break;  
       default:
-        $scope.scores.Cycling = 10 ;// Yes     
+        scores['Cycling'] = 10 ;// Yes     
         break;
     }
-    console.log($scope.scores.Cycling);
+    console.log(scores['Cycling']);
   }
 
 
@@ -158,13 +152,13 @@ $scope.ComputeCyclingScore = function() {
 $scope.ComputePhysicalExerciseScore = function() {
     switch($scope.survey.PhysicalExercise) {
       case  "20-30":
-        $scope.scores.PhysicalExercise = 0.5 ;// No Heart Problem 
+        scores['PhysicalExercise'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.PhysicalExercise = 10 ;// Yes Heart Problem 
+        scores['PhysicalExercise']= 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.PhysicalExercise);
+    console.log(scores['PhysicalExercise']);
   }
 
 
@@ -173,25 +167,25 @@ $scope.ComputePhysicalExerciseScore = function() {
 $scope.ComputeCaffeineConsumers = function() {
     switch($scope.survey.isCaffeineConsumers) {
       case  "0-2":
-        $scope.scores.isCaffeineConsumers = 0.5 ;// No Heart Problem 
+        scores['isCaffeineConsumers'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.isCaffeineConsumers = 10 ;// Yes Heart Problem 
+        scores['isCaffeineConsumers'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.isCaffeineConsumers);
+    console.log(scores['isCaffeineConsumers']);
   }
 
 $scope.ComputeSuplimentsScore = function() {
     switch($scope.survey.Supliments) {
       case  "0-2":
-        $scope.scores.Supliments = 0.5 ;// No Heart Problem 
+        scores['Supliments'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Supliments = 10 ;// Yes Heart Problem 
+        scores['Supliments'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Supliments);
+    console.log(scores['Supliments']);
   }
 
 
@@ -199,40 +193,40 @@ $scope.ComputeSuplimentsScore = function() {
 $scope.ComputeMeditationScore = function() {
     switch($scope.survey.Meditation.Time) {
       case  "2":
-        $scope.scores.Meditation = 0.5 ;// No Heart Problem 
+        scores['Meditation'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Meditation = 10 ;// Yes Heart Problem 
+        scores['Meditation'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Meditation);
+    console.log(scores['Meditation']);
   }
 
 
 
 
 $scope.ComputeThyroidScore = function() {
-    switch($scope.survey.Adrenal) {
+    switch($scope.survey.Thyroid) {
       case  "2":
-        $scope.scores.Thyroid = 0.5 ;// No Heart Problem 
+        scores['Thyroid'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Thyroid = 10 ;// Yes Heart Problem 
+        scores['Thyroid']= 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Thyroid);
+    console.log(scores['Thyroid']);
   }
 
 $scope.ComputeOsteoporosisScore = function() {
     switch($scope.survey.Osteoporosis) {
       case  "2":
-        $scope.scores.Osteoporosis = 0.5 ;// No Heart Problem 
+        scores['Osteoporosis'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Osteoporosis = 10 ;// Yes Heart Problem 
+        scores['Osteoporosis'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Osteoporosis);
+    console.log(scores['Osteoporosis']);
   }
 
 
@@ -240,50 +234,50 @@ $scope.ComputeOsteoporosisScore = function() {
 $scope.ComputeAdrenalScore = function() {
     switch($scope.survey.Adrenal) {
       case  "2":
-        $scope.scores.Adrenal = 0.5 ;// No Heart Problem 
+        scores['Adrenal']= 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Adrenal = 10 ;// Yes Heart Problem 
+        scores['Adrenal'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Adrenal);
+    console.log(scores['Adrenal']);
   }
 
   $scope.ComputeInsomniaScore = function() {
     switch($scope.survey.Insomnia) {
       case  "2":
-        $scope.scores.Insomnia = 0.5 ;// No Heart Problem 
+         scores['Insomnia'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.Insomnia = 10 ;// Yes Heart Problem 
+         scores['Insomnia'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.Insomnia);
+    console.log(scores['Insomnia']);
   }
 
 $scope.ComputeMoodDisorderScore = function() {
     switch($scope.survey.MoodDisorder) {
       case  "2":
-        $scope.scores.MoodDisorder = 0.5 ;// No Heart Problem 
+        scores['MoodDisorder']  = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.MoodDisorder = 10 ;// Yes Heart Problem 
+        scores['MoodDisorder'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.MoodDisorder);
+    console.log(scores['MoodDisorder']);
   }
   
 
   $scope.ComputeHeartDiseaseScore = function() {
     switch($scope.survey.HeartDisease) {
       case  "2":
-        $scope.scores.HeartDisease = 0.5 ;// No Heart Problem 
+        scores['HeartDisease'] = 0.5 ;// No Heart Problem 
         break;  
       default:
-        $scope.scores.HeartDisease = 10 ;// Yes Heart Problem 
+       scores['HeartDisease'] = 10 ;// Yes Heart Problem 
         break;
     }
-    console.log($scope.scores.HeartDisease);
+    console.log(scores['HeartDisease']);
   }
 
 
@@ -292,50 +286,50 @@ $scope.ComputeMoodDisorderScore = function() {
   $scope.ComputeWeightScore = function() {
     switch($scope.survey.Weight.BMI) {
       case  "30-45":
-        $scope.scores.Weight = 0.5 ;// Low/ideal Risk Score
+        scores['Weight'] = 0.5 ;// Low/ideal Risk Score
         break;  
       default:
-        $scope.scores.Weight = 10 ;// High  Risk Score
+        scores['Weight'] = 10 ;// High  Risk Score
         break;
     }
-    console.log($scope.scores.Weight);
+    console.log(scores['Weight']);
   }
 //Called in change in survey.BloodPressure.DiastolicReading invokes the associated ng-change function
  $scope.ComputeDiastolicReading = function() {
    switch($scope.survey.DiastolicReading) {
       case  "70-90":
-        $scope.scores.DiastolicReading = 0.5 ;// Low/ideal Risk Score
+        scores['DiastolicReading'] = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-        $scope.scores.DiastolicReading = 10;// High  Risk Score
+        scores['DiastolicReading'] = 10;// High  Risk Score
      break;
    }
-   console.log($scope.scores.DiastolicReading);
+   console.log(scores['DiastolicReading']);
  }
  //Called in change in survey.BloodPressure.SystolicReading invokes the associated ng-change function
  $scope.ComputeSystolicReading = function(){
    switch($scope.survey.SystolicReading) {
      case  "140-190":
-       $scope.scores.SystolicReading = 0.5 ;// Low/ideal Risk Score
+       scores['SystolicReading'] = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.SystolicReading = 10 ;// High  Risk Score
+       scores['SystolicReading'] = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.SystolicReading);
+   console.log(scores['SystolicReading']);
  }
 
 //ComputeLowDensityLipoProteinScore
   $scope.ComputeLowDensityLipoProteinScore = function(){
    switch($scope.survey.LowDensityLipoProtein) {
      case  "140-190":
-       $scope.scores.LowDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+       scores['LowDensityLipoProtein']= 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.LowDensityLipoProtein = 10 ;// High  Risk Score
+       scores['LowDensityLipoProtein'] = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.LowDensityLipoProtein);
+   console.log(scores['LowDensityLipoProtein']);
  }
 
 
@@ -345,13 +339,13 @@ $scope.ComputeMoodDisorderScore = function() {
   $scope.ComputeHighDensityLipoProteinScore = function(){
    switch($scope.survey.HighDensityLipoProtein) {
      case  "140-190":
-       $scope.scores.HighDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+       scores['HighDensityLipoProtein'] = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.HighDensityLipoProtein = 10 ;// High  Risk Score
+       scores['HighDensityLipoProtein'] = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.HighDensityLipoProtein);
+   console.log(scores['HighDensityLipoProtein']);
  }
 
 
@@ -361,13 +355,13 @@ $scope.ComputeMoodDisorderScore = function() {
   $scope.ComputeVeryLowDensityLipoProteinScore = function(){
    switch($scope.survey.VeryLowDensityLipoProtein) {
      case  "140-190":
-       $scope.scores.VeryLowDensityLipoProtein = 0.5 ;// Low/ideal Risk Score
+       scores['VeryLowDensityLipoProtein'] = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.VeryLowDensityLipoProtein = 10 ;// High  Risk Score
+       scores['VeryLowDensityLipoProtein'] = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.VeryLowDensityLipoProtein);
+   console.log(scores['VeryLowDensityLipoProtein']);
  }
 
 
@@ -375,13 +369,13 @@ $scope.ComputeMoodDisorderScore = function() {
   $scope.ComputeTotalCholesterolScore = function(){
    switch($scope.survey.TotalCholesterol) {
      case  "140-190":
-       $scope.scores.TotalCholesterol = 0.5 ;// Low/ideal Risk Score
+       scores['TotalCholesterol'] = 0.5 ;// Low/ideal Risk Score
      break;  
      default:
-       $scope.scores.TotalCholesterol = 10 ;// High  Risk Score
+      scores['TotalCholesterol'] = 10 ;// High  Risk Score
      break;
    }
-   console.log($scope.scores.TotalCholesterol);
+   console.log(scores['TotalCholesterol']);
  }
 
 $scope.ComputeAgeScore = function() {
@@ -398,44 +392,44 @@ $scope.ComputeAgeScore = function() {
                 switch ($scope.survey.Height){
                   case "157-182": //1
                     if($scope.Weight == "20-29") {
-                      $scope.scores.AgeScore = 0.5;
+                      scores['AgeScore'] = 0.5;
                     }
                   break;  
                   case "157-172":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   break;  
                   case "157-167":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   break;  
                   default:
-                    $scope.scores.AgeScore = 5;
+                    scores['AgeScore'] = 5;
                   break; 
                 }
                switch ($scope.survey.Weight){
                   case "50-60": //1
-                    $scope.scores.AgeScore = 10;
+                   scores['AgeScore']= 10;
                   break;  
                   case "60-70":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   break;  
                   case "65-75":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   break;  
                   case "70-80":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   break;  
                   case "60-72":
-                    $scope.scores.AgeScore = 10;
+                    scores['AgeScore'] = 10;
                   default:
-                    $scope.scores.AgeScore = 10;  
+                    scores['AgeScore'] = 10;  
                   break;
                }
            default:
           //  Set value in case of age lower than 20 and higher than 29
-            $scope.scores.AgeScore = 0;       
+            scores['AgeScore'] = 0.5;       
        }   
   }
-  console.log($scope.scores.AgeScore);
+  console.log(scores['AgeScore']);
 }
 
 
@@ -451,6 +445,7 @@ $scope.ComputeAgeScore = function() {
 
   //Slides functionalities
   $scope.frequencies = [];
+
   for(var i=0; i<100; i+=10){
     val = i+'-';
     inc = i + 10;
@@ -516,6 +511,17 @@ $scope.ComputeAgeScore = function() {
     if($ionicSlideBoxDelegate.currentIndex() != 0){
       $scope.prevButton = false;
     }
+    
+    if($ionicSlideBoxDelegate.currentIndex() == 7){
+        scores['Diet'] = (scores['Fatty']+scores['Sugary']+scores['Supliments'])/3;
+        scores['Hormonal']= (scores['Thyroid']+scores['Osteoporosis']+scores['Adrenal']+scores['HeartDisease']+scores['MoodDisorder']+scores['Insomnia'])/5; 
+         $scope.data = [
+        [scores['SystolicReading'], scores['AgeScore'],scores['Diet'], scores['isCaffeineConsumers'], scores['Alcohol'],scores['TotalCholesterol'],scores['Hormonal'],scores['PhysicalExercise'],scores['Weight']] 
+            , ['0.5', '0.5', '0.5', '0.5', '0.5', '0.5' , '0.5' , '0.5']     ];                                                                             
+    
+    }
+    console.log($ionicSlideBoxDelegate.currentIndex());
+    console.log(scores);
   }
   $scope.previous = function() {
     $ionicSlideBoxDelegate.previous();
@@ -528,16 +534,27 @@ $scope.ComputeAgeScore = function() {
     }
 
   }
-  function sync(SurveyData) {
-    console.log(SurveyData);
-  }
-  $scope.save = function(SurveyData) {
-      SurveyData.submitted_by = $scope.user_id;
-      SurveyData.age_of_vehicle = calculate_age(SurveyData.date_of_regn);
-      
-      //console.log(SurveyData.age_of_vehicle);
-      SurveyStore.update(SurveyData);
-      $state.go("surveys.spot");
+  
+
+  $scope.labels = ['BloodPressure', 'AgeScore', 'Diet', 'Smoking', 'Alcohol', 'TotalCholesterol', 'Hormonal Activity', 'Physical Activity' , 'Weight'];
+  $scope.series = [ 'Actual Values','Ideal/Desired'];
+
+  
+  // var s2 = [scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol']];
+  // console.log(scores['Walking']);
+   
+  // $scope.data = [
+  //   [50, 50, 50, 50, 50, 50, 50 ,50],
+  //   [scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol'],scores['Walking'], scores['TotalCholesterol']]
+  // ];
+  $scope.save = function(survey) {
+
+      CardiacStore.saveData(JSON.stringify(survey));
+      $state.go("app.survey");
   };
+})
+
+      
+.controller('ChartCtrl', function($scope, $ionicSlideBoxDelegate, $state, $ionicPlatform, $ionicPopup, $ionicScrollDelegate, $timeout){
 
 });

@@ -402,11 +402,27 @@
       </div>
     </ion-slide>
 
+    <ion-slide id="slide7">
+
+      <div class="card">
+        <div class="item item-divider">
+            User Response base Score
+        </div>
+        <div class="item item-text-wrap">
+            <canvas id="bar" class="chart chart-bar"
+              chart-data="data" chart-labels="labels" chart-series="series">
+            </canvas>
+        </div>
+    </div>
+
+
+    </ion-slide>
+
     </ion-slide-box> <!-- End Form slides -->
     
     <div class="button-bar">
     <button ion-item class="button icon-left ion-chevron-left button-light" ng-click="previous()" ng-hide="prevButton">Back</button>
-    <button type="submit" class="button button-balanced" ng-click="ComputeScore(survey)" ng-show="submitButton">Submit</button>
+    <button type="submit" class="button button-balanced" ng-click="save(survey)" ng-show="submitButton">Submit</button>
     <button ion-item class="button icon-right ion-chevron-right button-light" ng-click="next()" ng-hide="nextButton">Next</button>
     </div>
 
